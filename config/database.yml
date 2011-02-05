@@ -22,21 +22,30 @@
 #  timeout: 5000
 
 defaults: &defaults
-  adapter: mysql
+  adapter: mysql2
   username: root
   password: 
   host: localhost
   pool: 5
   timeout: 5000
   encoding: utf8
-
+  socket: /tmp/mysql.sock
+  
 development:
-  <<: *defaults
   database: project_dev
+  adapter: mysql2
+  username: root
+  password: 
+  host: localhost
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  socket: /tmp/mysql.sock
 
 test:
   <<: *defaults
   database: project_test
+  
 production:
   <<: *defaults
   database: project_prod
