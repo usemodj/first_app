@@ -1,5 +1,5 @@
 FirstApp::Application.routes.draw do
-  get "users/new"
+  #get "users/new"
 
 #  What isn’t obvious is that match ’/about’ also automatically creates
 #  named routes for use in the controllers and views:

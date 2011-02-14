@@ -1,0 +1,20 @@
+1.  migration generator 실행 
+$ rails generate migration add_email_uniqueness_index
+
+2.  email 필드에 유니크 인덱스 추가 
+db/migrate/<timestamp>_add_email_uniqueness_index.rb:
+
+class AddEmailUniquenessIndex < ActiveRecord::Migration
+	def self.up
+		add_index :users, :email, :unique => true
+	end
+	def self.down
+		remove_index :users, :email
+	end
+end
+
+3.  db:migrate 레이크 명령을 실행하여 DB에 반영 
+$  rake db:migrate
+
+
+

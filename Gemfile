@@ -6,7 +6,7 @@ gem 'mongrel', '1.2.0.pre2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
+gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
 ## sudo apt-get install  libmysql-ruby  libmysqlclient-dev
 #gem 'mysql'
 gem 'mysql2'
@@ -34,8 +34,14 @@ gem 'mysql2'
 #   gem 'webrat'
 # end
 
+#group :test, :development do
+#  gem "rspec-rails", "~> 2.4"
+#end
+
 group :development do
   gem 'rspec-rails', '2.4.1'
+  gem 'annotate-models', '1.0.4'
+
 end
 
 group :test do

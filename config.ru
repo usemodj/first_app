@@ -2,3 +2,6 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run FirstApp::Application
+
+#RailsEnv='test' 
+#RackEnv=test

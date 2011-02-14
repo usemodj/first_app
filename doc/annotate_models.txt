@@ -1,0 +1,31 @@
+annotate_models : adds comments containing the data model to the model file
+
+작성: Ruby Dev 2011년 2월 9일 수요일 오전 8:31
+
+1. Adding the annotate-models gem to the Gemfile:
+
+ 
+group :development do
+
+gem 'rspec-rails', '2.0.1'
+
+gem 'annotate-models', '1.0.4'
+
+end
+
+ 
+
+2.install annotate-models
+
+ $ bundle install
+
+ 
+
+3. adds comments containing
+
+the data model to the model file:
+
+ 
+$ annotate
+
+    Annotated User

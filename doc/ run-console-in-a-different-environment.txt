@@ -1,0 +1,41 @@
+
+If you ever need to run a console in a different environment (to debug a test, for
+example), you can pass the environment as a parameter to the console script:
+
+$ rails console test
+Loading test environment (Rails 3.0.0)
+>> Rails.env
+=> "test"
+
+$ rails console  --help
+Usage: console [environment] [options]
+    -s, --sandbox                    Rollback database modifications on exit.
+        --debugger                   Enable ruby-debugging for the console.
+        --irb                        DEPRECATED: Invoke `/your/choice/of/ruby script/rails console` instead
+
+---------------
+run server in a different environment:
+
+$ rails server --environment  production
+
+$ rails server --help
+Usage: rails server [mongrel, thin, etc] [options]
+    -p, --port=port                  Runs Rails on the specified port.
+                                     Default: 3000
+    -b, --binding=ip                 Binds Rails to the specified ip.
+                                     Default: 0.0.0.0
+    -c, --config=file                Use custom rackup configuration file
+    -d, --daemon                     Make server run as a Daemon.
+    -u, --debugger                   Enable ruby-debugging for the server.
+    -e, --environment=name           Specifies the environment to run this server under (test/development/production).
+                                     Default: development
+    -P, --pid=pid                    Specifies the PID file.
+                                     Default: tmp/pids/server.pid
+
+    -h, --help                       Show this help message.
+
+-------------------
+
+ running rake db:migrate in production:
+ 
+$ rake db:migrate RAILS_ENV=production
