@@ -10,8 +10,9 @@ gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
 ## sudo apt-get install  libmysql-ruby  libmysqlclient-dev
 #gem 'mysql'
 gem 'mysql2'
+gem 'gravatar_image_tag'
 
-# Use unicorn as the web server
+# Use unicorn as the wgeb server
 # gem 'unicorn'
 
 # Deploy with Capistrano
@@ -48,4 +49,6 @@ group :test do
   gem 'rspec', '2.4.0'
   gem 'webrat', '0.7.3'
   gem 'spork', '0.8.4'
+  gem 'factory_girl_rails'
+
 end

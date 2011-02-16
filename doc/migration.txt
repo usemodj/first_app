@@ -16,5 +16,27 @@ end
 3.  db:migrate 레이크 명령을 실행하여 DB에 반영 
 $  rake db:migrate
 
+----------
+== Password Migration
+
+$ rails g migration add_password_to_users encrypted_password:string
+      invoke  active_record
+      create    db/migrate/20110215041234_add_password_to_users.rb
 
 
+(Be sure to close
+any Rails consoles started in a sandbox; the sandbox locks the database and prevents the
+migration from going through.)
+
+$ rake db:migrate
+$ rake db:test:prepare
+
+-----------
+==
+
+$ rails g migration  add_salt_to_users salt:string
+      invoke  active_record
+      create    db/migrate/20110215061313_add_salt_to_users.rb
+
+$ rake db:migrate
+$ rake db:test:prepare

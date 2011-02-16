@@ -1,0 +1,33 @@
+Listing 7.15 Adding Factory Girl to the Gemfile.
+source 'http://rubygems.org'
+.
+.
+.
+group :test do
+.
+.
+.
+gem 'factory_girl_rails', '1.0'
+end
+
+---------
+Then install as usual:
+ 
+ $ bundle install
+
+---------
+Listing 7.16 A factory to simulate User model objects.
+spec/factories.rb
+
+# By using the symbol ':user', we get Factory Girl to simulate the User model.
+Factory.define :user do |user|
+	user.name "Michael Hartl"
+	user.email "mhartl@example.com"
+	user.password "foobar"
+	user.password_confirmation "foobar"
+end
+
+-------------
+we can create a User factory in the tests like this:
+
+  @user = Factory(:user)
