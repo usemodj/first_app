@@ -1,0 +1,5 @@
+
+heroku : Permission denied (publickey)  에러 문제 해결방법 
+
+  $ heroku  keys:add ~/.ssh/id_rsa.pub
+  
