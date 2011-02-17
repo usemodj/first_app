@@ -1,0 +1,28 @@
+
+== Git Commit
+
+$ git branch
+master
+* modeling-users
+
+--------
+
+$ git add .
+$ git commit -am "User model with passwords, and user show page"
+$ git checkout master
+$ git merge modeling-users
+
+== heroku deploy
+
+$ git push heroku
+
+$ heroku rake db:migrate
+
+
+== heroku console
+
+$ heroku console
+>> User.create(:name => "Example User", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar")
+
+
+

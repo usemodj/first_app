@@ -1,0 +1,4 @@
+
+$ rails generate integration_test users
+invoke rspec
+create  spec/requests/users_spec.rb
