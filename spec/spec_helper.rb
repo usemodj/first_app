@@ -34,6 +34,10 @@ Spork.prefork do
     # railties/lib/rails/application/bootstrap.rb
     ActiveSupport::Dependencies.clear
      
+    #A test_sign_in function to simulate user signin inside tests.
+    def test_sign_in(user)
+      controller.sign_in(user)
+    end
   end
 end
 

@@ -1,11 +1,17 @@
 FirstApp::Application.routes.draw do
+ # get "sessions/new"
   #get "users/new"
-
+  resources :microposts
+  resources :users
+  resources :sessions,  :only => [:new, :create, :destroy]
+  
 #  What isn’t obvious is that match ’/about’ also automatically creates
 #  named routes for use in the controllers and views:
 #    about_path => '/about'
 #    about_url => 'http://localhost:3000/about'
   match '/signup',    :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout',   :to => 'sessions#destroy'
   
   match '/contact',   :to => 'pages#contact'
   match '/about',     :to => 'pages#about'
@@ -17,9 +23,6 @@ FirstApp::Application.routes.draw do
 #  get "pages/contact"
 #  get "pages/about"
   
-  resources :microposts
-  resources :users
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
