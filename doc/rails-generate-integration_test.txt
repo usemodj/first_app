@@ -1,0 +1,4 @@
+
+$ rails g integration_test friendly_forwarding
+      invoke  rspec
+      create    spec/requests/friendly_forwardings_spec.rb

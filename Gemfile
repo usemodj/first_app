@@ -11,9 +11,12 @@ gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
 #gem 'mysql'
 gem 'mysql2'
 gem 'gravatar_image_tag'
+gem 'will_paginate', '~> 3.0.pre2'
 
 # Use unicorn as the wgeb server
 # gem 'unicorn'
+
+
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -42,7 +45,7 @@ gem 'gravatar_image_tag'
 group :development do
   gem 'rspec-rails', '2.4.1'
   gem 'annotate-models', '1.0.4'
-
+  gem 'faker'
 end
 
 group :test do

@@ -4,6 +4,7 @@ describe SessionsController do
   render_views
   
   describe "GET 'new'" do
+    
     it "should be successful" do
       get 'new'
       response.should be_success
@@ -13,11 +14,12 @@ describe SessionsController do
       get :new
       response.should have_selector("title", :content => "Sign in")
     end
-  end
+  end # describe "GET 'new'"
 
-  describe "POST 'create" do
+  describe "POST 'create' " do
     
     describe "invalid signin" do
+      
       before(:each) do
         @attr = {:email => "email@example.com", :password => "invalid"}
       end
@@ -36,7 +38,7 @@ describe SessionsController do
         post :create,   :session => @attr
         flash.now[:error].should =~ /invalid/i
       end
-    end
+    end # end of describe "invalid signin"
     
     describe "with valid email and password" do
       
@@ -56,15 +58,17 @@ describe SessionsController do
         post :create,  :session => @attr
         response.should redirect_to(user_path(@user))
       end
-    end
+    end # describe "with valid email and password"
     
     describe "success" do
+      
       it "should sign the user in" do
         post :create,   :user => @attr
         controller.should be_signed_in
       end
-    end
-  end
+    end #  describe "success" 
+    
+  end # End of   describe "POST 'create"
   
   describe "DELETE 'destroy'" do
     
@@ -75,4 +79,5 @@ describe SessionsController do
       response.should redirect_to(root_path)
     end
   end
+  
 end

@@ -1,0 +1,98 @@
+== page_entries_info(collection, options = {}) click to toggle source
+
+Renders a helpful message with numbers of displayed vs. total entries. You can use this as a blueprint for your own, similar helpers.
+
+  <%= page_entries_info @posts %>
+  #-> Displaying posts 6 - 10 of 26 in total
+
+By default, the message will use the humanized class name of objects in collection: for instance, “project types” for ProjectType models. Override this to your liking with the :entry_name parameter:
+
+  <%= page_entries_info @posts, :entry_name => 'item' %>
+  #-> Displaying items 6 - 10 of 26 in total
+
+Entry name is entered in singular and pluralized with String#pluralize method from ActiveSupport. If it isn’t loaded, specify plural with :plural_name parameter:
+
+  <%= page_entries_info @posts, :entry_name => 'item', :plural_name => 'items' %>
+
+By default, this method produces HTML output. You can trigger plain text output by passing :html => false in options. 
+
+
+== will_paginate(collection, options = {}) click to toggle source
+
+Renders Digg/Flickr-style pagination for a WillPaginate::Collection object. Nil is returned if there is only one page in total; pagination links aren’t needed in that case.
+Options
+
+    *
+
+      :class — CSS class name for the generated DIV (default: “pagination”)
+    *
+
+      :previous_label — default: “« Previous“
+    *
+
+      :next_label — default: “Next »“
+    *
+
+      :inner_window — how many links are shown around the current page (default: 4)
+    *
+
+      :outer_window — how many links are around the first and the last page (default: 1)
+    *
+
+      :separator — string separator for page HTML elements (default: single space)
+    *
+
+      :param_name — parameter name for page number in URLs (default: :page)
+    *
+
+      :params — additional parameters when generating pagination links (eg. :controller => "foo", :action => nil)
+    *
+
+      :renderer — class name, class or instance of a link renderer (default: WillPaginate::LinkRenderer)
+    *
+
+      :page_links — when false, only previous/next links are rendered (default: true)
+    *
+
+      :container — toggles rendering of the DIV container for pagination links, set to false only when you are rendering your own pagination markup (default: true)
+    *
+
+      :id — HTML ID for the container (default: nil). Pass true to have the ID automatically generated from the class name of objects in collection: for example, paginating ArticleComment models would yield an ID of “article_comments_pagination“.
+
+All options beside listed ones are passed as HTML attributes to the container element for pagination links (the DIV). For example:
+
+  <%= will_paginate @posts, :id => 'wp_posts' %>
+
+… will result in:
+
+  <div class="pagination" id="wp_posts"> ... </div>
+  
+  
+==   <%= will_paginate :id => true %>
+
+… will result in @post collection getting paginated:
+
+  <div class="pagination" id="posts_pagination"> ... </div>
+  
+
+== paginated_section(*args, &block) click to toggle source
+
+Wrapper for rendering pagination links at both top and bottom of a block of content.
+
+  <% paginated_section @posts do %>
+    <ol id="posts">
+      <% for post in @posts %>
+        <li> ... </li>
+      <% end %>
+    </ol>
+  <% end %>
+
+will result in:
+
+  <div class="pagination"> ... </div>
+  <ol id="posts">
+    ...
+  </ol>
+  <div class="pagination"> ... </div>
+
+Arguments are passed to a will_paginate call, so the same options apply. Don’t use the :id option; otherwise you’ll finish with two blocks of pagination links sharing the same ID (which is invalid HTML). 
