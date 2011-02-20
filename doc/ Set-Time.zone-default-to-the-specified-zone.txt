@@ -1,0 +1,55 @@
+
+==  Set Time.zone default to the specified zone
+
+config/application.rb:
+
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    # config.time_zone = 'Central Time (US & Canada)'
+	
+ 	config.time_zone='Seoul'
+ 	
+== Display all time zone
+ 	
+ 	rake time:zones:all
+ 	
+-------------
+ref. http://www.ruby-forum.com/topic/205411
+
+Re: I18n in Rails 3
+Posted by micha.voigt (Guest)
+on 2010-03-05 23:41
+(Received via mailing list)
+
+Hi,
+
+the option :path_prefix is in rails 3 deprecated an will remove in
+rails
+3.1.
+
+Please use this in you routes.rb:
+
+   scope "(/:locale)" do
+     resources :items
+   end
+
+and in your application controller:
+
+class ApplicationController < ActionController::Base
+   protect_from_forgery
+
+   before_filter :set_locale
+   def set_locale
+     I18n.locale = params[:locale]
+   end
+
+   def default_url_options(options={})
+     {:locale => I18n.locale}
+   end
+end
+
+config/application.rb:
+config.i18n.default_locale = :de
+
+Cheers,
+Michael

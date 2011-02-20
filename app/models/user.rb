@@ -11,7 +11,8 @@
 #
 require 'digest'
 class User < ActiveRecord::Base
-  has_many :microposts
+  has_many :microposts,   :dependent => :destroy
+  
   attr_accessor :password
 	attr_accessible  :name, :email, :password , :password_confirmation
   
@@ -46,6 +47,12 @@ class User < ActiveRecord::Base
 		  user = find_by_id(id)
 		  (user && user.salt == cookie_salt)?  user : nil
 		end
+		
+		def feed
+		  #This is prelimiary. See chapter12 for the full implementation.
+		  Micropost.where( "user_id = ?", id)
+		end
+		
 		
 	private
 	

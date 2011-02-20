@@ -1,5 +1,5 @@
 <table class="profile" summary = "Profile information">
-	<tr>
+	<tr >
 		<td class="main">
 
 		<h1>
@@ -7,8 +7,15 @@
 			<%= gravatar_for @user %>
 			<%= @user.name %>
 		</h1>
+		
+		<% unless @user.microposts.empty? %>
+			<table class="microposts" summary="User microposts">
+				<%= render @microposts %>
+			</table>
+			<%= will_paginate @microposts %>
+		<% end %>
 </td>
-<td class="sidebar round">
+<td class="sidebar round" style="vertical-align:top;">
 	<p>
 	  <b>Name:</b>
 	  <%= @user.name %>
@@ -25,6 +32,10 @@
 	<p>
 		<b>URL</b>
 		<%= link_to user_path(@user), @user %>
+	</p>
+	<p>
+		<b>Microposts</b>
+		<%= @user.microposts.count %>
 	</p>
 </td>
 </tr>

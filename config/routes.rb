@@ -1,7 +1,7 @@
 FirstApp::Application.routes.draw do
  # get "sessions/new"
   #get "users/new"
-  resources :microposts
+  resources :microposts, :only => [:create, :destroy]
   resources :users
   resources :sessions,  :only => [:new, :create, :destroy]
   
@@ -18,7 +18,7 @@ FirstApp::Application.routes.draw do
   match '/help',      :to => 'pages#help'
   #match '/',            :to => 'pages#home'
   root    :to => 'pages#home'
-  
+  #get 'pages/home'
 #  get "pages/home"
 #  get "pages/contact"
 #  get "pages/about"

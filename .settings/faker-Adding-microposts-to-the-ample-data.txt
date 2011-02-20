@@ -1,0 +1,24 @@
+== Adding microposts to the sample data.
+lib/tasks/sample_data.rake
+
+
+require 'faker'
+namespace :db do
+	desc "Fill database with sample data"
+	task :populate => :environment do
+		.
+		.
+		.
+		User.all(:limit => 6).each do |user|
+			50.times do
+				user.microposts.create!(:content => Faker::Lorem.sentence(5))
+			end
+		end
+	end
+end
+
+
+== to generate the new sample data we have to run the db:populate Rake task:
+
+  $ rake db:populate
+
