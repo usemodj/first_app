@@ -190,7 +190,7 @@ margin-bottom: 10px;
 	}
 	
 	table.microposts tr td.micropost span.timestamp {
-		display: black;
+		display: block;
 		font-size: 85%;
 		color: #666;
 	}

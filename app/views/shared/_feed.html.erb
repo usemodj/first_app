@@ -1,4 +1,10 @@
+<br/>
+<br/>
+<br/>
 <% unless @feed_items.nil? or @feed_items.empty? %>
+   <div>
+    <%= page_entries_info @feed_items , :entry_name => 'item'  %>
+    </div>
 	<table class="micorposts" summary="User microposts">
 		<%= render :partial => 'shared/feed_item',  :collection => @feed_items %>
 	</table>

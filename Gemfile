@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+#gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 gem 'mongrel', '1.2.0.pre2'
 
 # Bundle edge Rails instead:
@@ -43,13 +44,13 @@ gem 'will_paginate', '~> 3.0.pre2'
 #end
 
 group :development do
-  gem 'rspec-rails', '2.4.1'
+  gem 'rspec-rails', '2.5.0'
   gem 'annotate-models', '1.0.4'
   gem 'faker'
 end
 
 group :test do
-  gem 'rspec', '2.4.0'
+  gem 'rspec', '2.5.0'
   gem 'webrat', '0.7.3'
   gem 'spork', '0.8.4'
   gem 'factory_girl_rails'

@@ -2,9 +2,14 @@ FirstApp::Application.routes.draw do
  # get "sessions/new"
   #get "users/new"
   resources :microposts, :only => [:create, :destroy]
-  resources :users
+  resources :users  do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions,  :only => [:new, :create, :destroy]
-  
+  resources :relationships, :only => [:create, :destroy]
+    
 #  What isn’t obvious is that match ’/about’ also automatically creates
 #  named routes for use in the controllers and views:
 #    about_path => '/about'

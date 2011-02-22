@@ -12,6 +12,10 @@
 require 'digest'
 class User < ActiveRecord::Base
   has_many :microposts,   :dependent => :destroy
+  has_many :relationships,  :foreign_key => "follower_id", :dependent => :destroy 
+  has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id", :class_name => "Relationship", :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
   
   attr_accessor :password
 	attr_accessible  :name, :email, :password , :password_confirmation
@@ -50,11 +54,25 @@ class User < ActiveRecord::Base
 		
 		def feed
 		  #This is prelimiary. See chapter12 for the full implementation.
-		  Micropost.where( "user_id = ?", id)
+		  #Micropost.where( "user_id = ?", id)
+      # SELECT * FROM microposts
+      # WHERE user_id IN (<list of ids>) OR user_id = <user id>
+		  Micropost.from_users_followed_by( self)
 		end
 		
-		
-	private
+  def following?(followed)
+    relationships.find_by_followed_id( followed)
+  end
+  
+  def follow!(followed)
+    relationships.create!( :followed_id => followed.id)
+  end
+  
+  def unfollow!( followed)
+    relationships.find_by_followed_id( followed).destroy
+  end
+	
+  private
 	
 	def encrypt_password
 		self.salt = make_salt if new_record?

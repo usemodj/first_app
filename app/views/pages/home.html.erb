@@ -4,14 +4,16 @@
 		<tr>
 			<td class="main">
 				<h1 class="micropost">What's up?</h1>
+				<div style="height:8em;">
 				<%= render  'shared/micropost_form' %>
-				<br clear="left"/>
-				<br/>
-				<br/>
+				</div>
+				<div style="clear:both;float:left">
 				<%= render 'shared/feed' %>
+				</div>
 			</td>
 			<td class="sidebar round" style="vertical-align:top;">
 				<%= render 'shared/user_info' %>
+				<%= render 'shared/stats'%>
 			</td>
 		</tr>
 	</table>

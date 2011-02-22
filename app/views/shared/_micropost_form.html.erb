@@ -3,9 +3,39 @@
 <%= form_for @micropost do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
-		<%= f.text_area  :content %>
+		<%-#= f.text_area  :content,  :onKeyUp =>"return taCount(this,'myCounter')",	  :onKeyDown =>"return taCount(this,'myCounter')"    -%>
+		<%= f.text_area  :content, :onKeyUp =>"countLeft(this, this.form.counter, 140)"  %>
 	</div>
+	
+	<input type="text" name="counter" size="3" value="140" readonly disabled>characters remaining 	
 	<div class="actions">
 		<%= f.submit "Submit" %>
 	</div>
 <% end %>
+
+
+  <script  language="JavaScript">
+ // function parameters are: field - the string field, count - the field for remaining
+//  characters  number and max - the maximum number of characters  
+ function countLeft(field, count, max) {
+ 	var remaining = max - field.value.length;
+	//We do this because different browsers and servers handle new lines differently.
+	//Internet Explorer and Opera say a new line is \r\n
+	//Firefox and Safari say a new line is just a \n
+	//ASP.NET seems to convert any plain \n characters to \r\n, which leads to counting issues
+ 	var value = field.value.replace(/\u000d\u000a/g,'\u000a').replace(/\u000a/g,'\u000d\u000a');
+
+	 // if the length of the string in the input field is greater than the max value, trim it 
+	 if (remaining < 0){
+		 //alert( field.value);
+		 // field.value = value.substring(0, max);
+		 value =  value.substring(0, max);
+		  field.value = value; // value.substring(0, max);
+		  field.setSelectionRange(max, max);
+		  remaining = max - field.value.length;
+	}
+	 // calculate the remaining characters  
+	 count.value = remaining; //max - field.value.length;
+ }
+ </script>	
+
